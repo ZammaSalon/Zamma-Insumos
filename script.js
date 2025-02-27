@@ -44,12 +44,15 @@ function mostrarSeccion(seccionId) {
         dropBtn.setAttribute('aria-selected', 'true');
     }
 
-    // Cerrar el menú móvil y desplegable si está abierto (solo en dispositivos móviles)
+    // Cerrar el menú móvil si está abierto (solo en dispositivos móviles), pero no interferir con el desplegable
     const navMenu = document.querySelector('.nav-menu');
     if (window.innerWidth <= 768 && navMenu && navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-        const menuToggle = document.querySelector('.menu-toggle');
-        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+        const isDropdownOpen = document.querySelector('.nav-dropdown-content').classList.contains('active');
+        if (!isDropdownOpen) {
+            navMenu.classList.remove('active');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+        }
         const dropButton = document.querySelector('.dropbtn');
         if (dropButton) dropButton.setAttribute('aria-expanded', 'false');
     }
@@ -62,13 +65,43 @@ window.addEventListener('load', () => {
     }, 2000); // 2 segundos para coincidir con el loader + transición
 });
 
-// Menú móvil
+// Menú móvil y desplegable
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
+const dropButton = document.querySelector('.dropbtn');
+const dropdownContent = document.querySelector('.nav-dropdown-content');
+
 if (menuToggle && navMenu) {
     menuToggle.addEventListener('click', () => {
         const isExpanded = navMenu.classList.toggle('active');
         menuToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    });
+}
+
+if (dropButton && dropdownContent) {
+    dropButton.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault(); // Evitar que se cierre inmediatamente en móviles
+            const isExpanded = dropdownContent.classList.toggle('active');
+            dropButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+            // Cerrar el menú hamburguesa si está abierto, pero mantener el desplegable
+            if (isExpanded && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        } else {
+            // En escritorio, permitir el comportamiento predeterminado
+            const seccionId = dropButton.getAttribute('href').substring(1);
+            mostrarSeccion(seccionId);
+        }
+    });
+
+    // Cerrar el desplegable si se hace clic fuera en móviles
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768 && !dropButton.contains(e.target) && !dropdownContent.contains(e.target)) {
+            dropdownContent.classList.remove('active');
+            dropButton.setAttribute('aria-expanded', 'false');
+        }
     });
 }
 
@@ -105,7 +138,7 @@ function ordenarProductos(orden, seccionId) {
 
     switch (orden) {
         case 'mas-vendidos':
-            // Ordenar por un atributo data-vendido (si existe) o aleatorio como backup
+            // Ordenar por data-vendido si existe, o aleatorio como backup
             productos.sort((a, b) => {
                 const vendidoA = parseInt(a.getAttribute('data-vendido') || 0);
                 const vendidoB = parseInt(b.getAttribute('data-vendido') || 0);
