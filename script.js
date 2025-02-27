@@ -2,13 +2,13 @@
 window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     if (loader) {
-        // Ocultar loader después de 2 segundos o cuando todo esté cargado
+        // Ocultar loader después de 1.5 segundos con transición suave
         setTimeout(() => {
             loader.style.opacity = '0';
             setTimeout(() => {
                 loader.style.display = 'none';
             }, 500); // Transición suave de 0.5s
-        }, 2000);
+        }, 1500); // 1.5 segundos para una carga más rápida
     }
 });
 
@@ -44,11 +44,14 @@ function mostrarSeccion(seccionId) {
         dropBtn.setAttribute('aria-selected', 'true');
     }
 
-    // Cerrar el menú móvil si está abierto (solo en dispositivos móviles)
+    // Cerrar el menú móvil y desplegable si está abierto (solo en dispositivos móviles)
     const navMenu = document.querySelector('.nav-menu');
     if (window.innerWidth <= 768 && navMenu && navMenu.classList.contains('active')) {
         navMenu.classList.remove('active');
-        document.querySelector('.menu-toggle').setAttribute('aria-expanded', 'false');
+        const menuToggle = document.querySelector('.menu-toggle');
+        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+        const dropButton = document.querySelector('.dropbtn');
+        if (dropButton) dropButton.setAttribute('aria-expanded', 'false');
     }
 }
 
@@ -56,7 +59,7 @@ function mostrarSeccion(seccionId) {
 window.addEventListener('load', () => {
     setTimeout(() => {
         mostrarSeccion('adhesivos');
-    }, 2500); // 2.5 segundos para coincidir con el loader + transición
+    }, 2000); // 2 segundos para coincidir con el loader + transición
 });
 
 // Menú móvil
@@ -102,8 +105,12 @@ function ordenarProductos(orden, seccionId) {
 
     switch (orden) {
         case 'mas-vendidos':
-            // Simulación aleatoria de "más vendidos" (puedes reemplazar con datos reales)
-            productos.sort(() => 0.5 - Math.random());
+            // Ordenar por un atributo data-vendido (si existe) o aleatorio como backup
+            productos.sort((a, b) => {
+                const vendidoA = parseInt(a.getAttribute('data-vendido') || 0);
+                const vendidoB = parseInt(b.getAttribute('data-vendido') || 0);
+                return vendidoB - vendidoA || 0.5 - Math.random();
+            });
             break;
         case 'precio-asc':
             productos.sort((a, b) => {
@@ -132,16 +139,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Asegurar que las funciones se ejecuten solo cuando el DOM esté listo
     const selectFilters = document.querySelectorAll('.filter-select');
     const selectSorts = document.querySelectorAll('.sort-select');
-    
+
     selectFilters.forEach(select => {
         select.addEventListener('change', (e) => {
-            filtrarProductos(e.target.value, select.closest('.section').id);
+            const seccionId = select.closest('.section').id;
+            filtrarProductos(e.target.value, seccionId);
         });
     });
 
     selectSorts.forEach(select => {
         select.addEventListener('change', (e) => {
-            ordenarProductos(e.target.value, select.closest('.section').id);
+            const seccionId = select.closest('.section').id;
+            ordenarProductos(e.target.value, seccionId);
         });
     });
 });
