@@ -48,7 +48,7 @@ function mostrarSeccion(seccionId) {
                 navMenu.classList.remove('active');
                 const menuToggle = document.querySelector('.menu-toggle');
                 if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
-            }, 500);
+            }, 700); // Aumentado a 700ms para mayor tolerancia
         }
         const dropButton = document.querySelector('.dropbtn');
         if (dropButton && !isDropdownOpen) dropButton.setAttribute('aria-expanded', 'false');
@@ -86,8 +86,8 @@ if (dropButton && dropdownContent) {
             dropdownContent.classList.toggle('active', isExpanded);
             dropButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
             if (isExpanded) {
-                touchActive = true; // Activar bandera al abrir
-                setTimeout(() => { touchActive = false; }, 1000); // Desactivar después de 1 segundo
+                touchActive = true;
+                setTimeout(() => { touchActive = false; }, 1500); // Aumentado a 1500ms
             }
             if (isExpanded && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
@@ -103,12 +103,13 @@ if (dropButton && dropdownContent) {
     dropButton.addEventListener('touchstart', (e) => {
         if (window.innerWidth <= 768) {
             e.preventDefault();
+            e.stopPropagation(); // Evitar que se propague a otros eventos
             const isExpanded = !dropdownContent.classList.contains('active');
             dropdownContent.classList.toggle('active', isExpanded);
             dropButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
             if (isExpanded) {
                 touchActive = true;
-                setTimeout(() => { touchActive = false; }, 1000);
+                setTimeout(() => { touchActive = false; }, 1500);
             }
             if (isExpanded && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
@@ -117,13 +118,20 @@ if (dropButton && dropdownContent) {
         }
     }, { passive: false });
 
-    // Cerrar el desplegable si se hace clic o toca fuera, pero respetar la interacción
+    // Manejo de desplazamiento para evitar cierres accidentales
+    dropButton.addEventListener('touchmove', (e) => {
+        if (window.innerWidth <= 768 && dropdownContent.classList.contains('active')) {
+            e.preventDefault(); // Evitar cierre durante desplazamiento
+        }
+    }, { passive: false });
+
+    // Cerrar el desplegable si se hace clic o toca fuera
     document.addEventListener('click', (e) => {
         if (window.innerWidth <= 768 && !touchActive && !dropButton.contains(e.target) && !dropdownContent.contains(e.target)) {
             setTimeout(() => {
                 dropdownContent.classList.remove('active');
                 dropButton.setAttribute('aria-expanded', 'false');
-            }, 300);
+            }, 500); // Aumentado a 500ms
         }
     });
 
@@ -132,7 +140,7 @@ if (dropButton && dropdownContent) {
             setTimeout(() => {
                 dropdownContent.classList.remove('active');
                 dropButton.setAttribute('aria-expanded', 'false');
-            }, 300);
+            }, 500);
         }
     });
 }
