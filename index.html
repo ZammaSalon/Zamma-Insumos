@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamma | Insumos de Pestañas Premium</title>
+    <meta name="description" content="Zamma: Encuentra insumos de pestañas de calidad premium. Consulta nuestro catálogo exclusivo y pide por WhatsApp.">
+    <meta name="keywords" content="insumos pestañas, belleza ocular, zamma, premium, orizaba">
+    <meta name="author" content="Zamma">
+    <link rel="icon" type="image/png" href="ruta/a/tu/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader">
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">Zamma</a>
+            <nav class="nav-menu">
+                <div class="nav-dropdown">
+                    <button class="dropbtn">Productos <i class="fas fa-caret-down"></i></button>
+                    <div class="nav-dropdown-content">
+						<a href="#pestanas" onclick="mostrarSeccion('pestanas')">Pestañas</a>
+                        <a href="#adhesivos" onclick="mostrarSeccion('adhesivos')">Adhesivos</a>
+                        <a href="#bonder" onclick="mostrarSeccion('bonder')">Bonder</a>
+                        <a href="#primer" onclick="mostrarSeccion('primer')">Primer</a>
+                        <a href="#booster" onclick="mostrarSeccion('booster')">Booster</a>
+                        <a href="#pinzas" onclick="mostrarSeccion('pinzas')">Pinzas</a>
+                        <a href="#pizetas" onclick="mostrarSeccion('pizetas')">Pizetas</a>
+                        <a href="#cintas" onclick="mostrarSeccion('cintas')">Cintas</a>
+                        <a href="#cojin" onclick="mostrarSeccion('cojin')">Cojín</a>
+                        <a href="#camillas" onclick="mostrarSeccion('camillas')">Camas/Camillas</a>
+                        
+                    </div>
+                </div>
+                <a href="#ubicacion" class="nav-item" onclick="mostrarSeccion('ubicacion')">Ubicación</a>
+            </nav>
+            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Zamma</h1>
+        <p>Insumos de pestañas de calidad premium en Orizaba</p>
+        <a href="#adhesivos" class="cta-btn" onclick="mostrarSeccion('adhesivos')">Explora Nuestro Catálogo</a>
+    </section>
+
+    <!-- Sección Adhesivos -->
+    <section id="adhesivos" class="section">
+        <div class="section-title">Adhesivos</div>
+        <div class="catalog-header">
+            <select class="filter-select" onchange="filtrarProductos(this.value, 'adhesivos')">
+                <option value="todos">Todos</option>
+                <option value="disponibles">Disponibles</option>
+                <option value="agotados">Agotados</option>
+            </select>
+            <select class="sort-select" onchange="ordenarProductos(this.value, 'adhesivos')">
+                <option value="mas-vendidos">Más vendidos</option>
+                <option value="precio-asc">Precio: Menor a Mayor</option>
+                <option value="precio-desc">Precio: Mayor a Menor</option>
+            </select>
+        </div>
+        <div class="catalog" id="adhesivos-catalog">
+            <div class="product" data-precio="70" data-disponible="true">
+                <img src="images/0.webp" alt="ADHESIVO LIFTING">
+                <h3>ADHESIVO LIFTING</h3>
+                <p>$70.00 MXN</p>
+            </div>
+            <div class="product" data-precio="180" data-disponible="true">
+                <img src="images/2.webp" alt="SKY GLUE TAPA AZUL">
+                <h3>SKY GLUE TAPA AZUL</h3>
+                <p>$180.00 MXN</p>
+            </div>
+            <div class="product" data-precio="200" data-disponible="true">
+                <img src="images/5.jpg" alt="ADHESIVO IB NEGRO">
+                <h3>ADHESIVO IB NEGRO</h3>
+                <p>$200.00 MXN</p>
+            </div>
+            <div class="product" data-precio="200" data-disponible="true">
+                <img src="images/6.webp" alt="ADHESIVO IB VERDE 5ML">
+                <h3>ADHESIVO IB VERDE 5ML</h3>
+                <p>$200.00 MXN</p>
+            </div>
+            <div class="product" data-precio="250" data-disponible="true">
+                <img src="images/7.webp" alt="ADHESIVO IB VERDE 10ML">
+                <h3>ADHESIVO IB VERDE 10ML</h3>
+                <p>$250.00 MXN</p>
+            </div>
+            <div class="product" data-precio="220" data-disponible="true">
+                <img src="images/8.webp" alt="ADHESIVO IB TRASPARENTE">
+                <h3>ADHESIVO IB TRASPARENTE</h3>
+                <p>$220.00 MXN</p>
+            </div>
+            <div class="product" data-precio="170" data-disponible="true">
+                <img src="images/9.webp" alt="SKY GLUE TAPA ROJA">
+                <h3>SKY GLUE TAPA ROJA</h3>
+                <p>$170.00 MXN</p>
+            </div>
+            <div class="product" data-precio="170" data-disponible="true">
+                <img src="images/10.webp" alt="SKY GLUE TAPA NEGRA">
+                <h3>SKY GLUE TAPA NEGRA</h3>
+                <p>$170.00 MXN</p>
+            </div>
+            <div class="product" data-precio="170" data-disponible="true">
+                <img src="images/11.webp" alt="ADHESIVO TDANCE">
+                <h3>ADHESIVO TDANCE</h3>
+                <p>$170.00 MXN</p>
+            </div>
+            <div class="product" data-precio="20" data-disponible="true">
+                <img src="images/12.jpg" alt="TOALLITAS CON ADHESIVO">
+                <h3>TOALLITAS CON ADHESIVO</h3>
+                <p>$20.00 MXN</p>
+            </div>
+            <div class="product" data-precio="250" data-disponible="true">
+                <img src="images/13.jpg" alt="ADHESIVO SUMFORMI (GOLLEE)">
+                <h3>ADHESIVO SUMFORMI (GOLLEE)</h3>
+                <p>$250.00 MXN</p>
+            </div>
+            <div class="product" data-precio="300" data-disponible="true">
+                <img src="images/14.webp" alt="ADHESIVO GOLLE ROSA">
+                <h3>ADHESIVO GOLLE ROSA</h3>
+                <p>$300.00 MXN</p>
+            </div>
+            <div class="product" data-precio="300" data-disponible="true">
+                <img src="images/15.webp" alt="ADHESIVO GOLLE NEGRO">
+                <h3>ADHESIVO GOLLE NEGRO</h3>
+                <p>$300.00 MXN</p>
+            </div>
+            <div class="product" data-precio="220" data-disponible="true">
+                <img src="images/16.jpg" alt="ADHESIVOS IB DORADO">
+                <h3>ADHESIVOS IB DORADO</h3>
+                <p>$220.00 MXN</p>
+            </div>
+            <div class="product" data-precio="80" data-disponible="true">
+                <img src="images/17.webp" alt="ADHESIVO LOVE CRAZY">
+                <h3>ADHESIVO LOVE CRAZY</h3>
+                <p>$80.00 MXN</p>
+            </div>
+            <div class="product" data-precio="80" data-disponible="true">
+                <img src="images/18.jpg" alt="ADHESIVO VERDE KALANZI">
+                <h3>ADHESIVO VERDE KALANZI</h3>
+                <p>$80.00 MXN</p>
+            </div>
+            <div class="product" data-precio="300" data-disponible="true">
+                <img src="images/19.webp" alt="ADHESIVO GOLLE ELITE">
+                <h3>ADHESIVO GOLLE ELITE</h3>
+                <p>$300.00 MXN</p>
+            </div>
+            <div class="product" data-precio="120" data-disponible="true">
+                <img src="images/20.webp" alt="ADHESIVO DE CEJAS">
+                <h3>ADHESIVO DE CEJAS</h3>
+                <p>$120.00 MXN</p>
+            </div>
+        </div>
+        <a href="https://wa.me/522721919293?text=Hola,%20quiero%20pedir%20un%20Adhesivo%20Zamma" class="whatsapp-btn" target="_blank">Pide por WhatsApp</a>
+    </section>
+
+    <!-- Sección Bonder -->
+    <section id="bonder" class="section">
+        <div class="section-title">Bonder</div>
+        <div class="catalog-header">
+            <select class="filter-select" onchange="filtrarProductos(this.value, 'bonder')">
+                <option value="todos">Todos</option>
+                <option value="disponibles">Disponibles</option>
+                <option value="agotados">Agotados</option>
+            </select>
+            <select class="sort-select" onchange="ordenarProductos(this.value, 'bonder')">
+                <option value="mas-vendidos">Más vendidos</option>
+                <option value="precio-asc">Precio: Menor a Mayor</option>
+                <option value="precio-desc">Precio: Mayor a Menor</option>
+            </select>
+        </div>
+        <div class="catalog" id="bonder-catalog">
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/21.webp" alt="SUPER BONDER MAY">
+                <h3>SUPER BONDER MAY</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="180" data-disponible="true">
+                <img src="images/22.webp" alt="BONDER IB">
+                <h3>BONDER IB</h3>
+                <p>$180.00 MXN</p>
+            </div>
+            <div class="product" data-precio="120" data-disponible="true">
+                <img src="images/23.webp" alt="BONDER XIAOYA">
+                <h3>BONDER XIAOYA</h3>
+                <p>$120.00 MXN</p>
+            </div>
+            <div class="product" data-precio="70" data-disponible="true">
+                <img src="images/24.webp" alt="BONDER KISS COLOR">
+                <h3>BONDER KISS COLOR</h3>
+                <p>$70.00 MXN</p>
+            </div>
+            <div class="product" data-precio="140" data-disponible="true">
+                <img src="images/25.webp" alt="BONDER NATANAHUA">
+                <h3>BONDER NATANAHUA</h3>
+                <p>$140.00 MXN</p>
+            </div>
+        </div>
+        <a href="https://wa.me/522721919293?text=Hola,%20quiero%20pedir%20un%20Bonder%20Zamma" class="whatsapp-btn" target="_blank">Pide por WhatsApp</a>
+    </section>
+
+    <!-- Sección Primer -->
+    <section id="primer" class="section">
+        <div class="section-title">Primer</div>
+        <div class="catalog-header">
+            <select class="filter-select" onchange="filtrarProductos(this.value, 'primer')">
+                <option value="todos">Todos</option>
+                <option value="disponibles">Disponibles</option>
+                <option value="agotados">Agotados</option>
+            </select>
+            <select class="sort-select" onchange="ordenarProductos(this.value, 'primer')">
+                <option value="mas-vendidos">Más vendidos</option>
+                <option value="precio-asc">Precio: Menor a Mayor</option>
+                <option value="precio-desc">Precio: Mayor a Menor</option>
+            </select>
+        </div>
+        <div class="catalog" id="primer-catalog">
+            <div class="product" data-precio="120" data-disponible="true">
+                <img src="images/27.jpg" alt="PRIMER MAY">
+                <h3>PRIMER MAY</h3>
+                <p>$120.00 MXN</p>
+            </div>
+            <div class="product" data-precio="145" data-disponible="true">
+                <img src="images/28.webp" alt="PRIMER IB">
+                <h3>PRIMER IB</h3>
+                <p>$145.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/29.jpg" alt="PRIMER XIAOYA">
+                <h3>PRIMER XIAOYA</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="55" data-disponible="true">
+                <img src="images/30.webp" alt="PRIMER KALANZI">
+                <h3>PRIMER KALANZI</h3>
+                <p>$55.00 MXN</p>
+            </div>
+            <div class="product" data-precio="70" data-disponible="true">
+                <img src="images/31.jpg" alt="PRIMER KISS COLOR">
+                <h3>PRIMER KISS COLOR</h3>
+                <p>$70.00 MXN</p>
+            </div>
+        </div>
+        <a href="https://wa.me/522721919293?text=Hola,%20quiero%20pedir%20un%20Primer%20Zamma" class="whatsapp-btn" target="_blank">Pide por WhatsApp</a>
+    </section>
+
+    <!-- Sección Booster -->
+    <section id="booster" class="section">
+        <div class="section-title">Booster</div>
+        <div class="catalog-header">
+            <select class="filter-select" onchange="filtrarProductos(this.value, 'booster')">
+                <option value="todos">Todos</option>
+                <option value="disponibles">Disponibles</option>
+                <option value="agotados">Agotados</option>
+            </select>
+            <select class="sort-select" onchange="ordenarProductos(this.value, 'booster')">
+                <option value="mas-vendidos">Más vendidos</option>
+                <option value="precio-asc">Precio: Menor a Mayor</option>
+                <option value="precio-desc">Precio: Mayor a Menor</option>
+            </select>
+        </div>
+        <div class="catalog" id="booster-catalog">
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/3.jpg" alt="BOOSTER FRESA 15ML">
+                <h3>BOOSTER FRESA 15ML</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/26.webp" alt="BOOSTER PLATANO 15G">
+                <h3>BOOSTER PLATANO 15G</h3>
+                <p>$150.00 MXN</p>
+            </div>
+        </div>
+        <a href="https://wa.me/522721919293?text=Hola,%20quiero%20pedir%20un%20Booster%20Zamma" class="whatsapp-btn" target="_blank">Pide por WhatsApp</a>
+    </section>
+
+    <!-- Sección Pinzas -->
+    <section id="pinzas" class="section">
+        <div class="section-title">Pinzas</div>
+        <div class="catalog-header">
+            <select class="filter-select" onchange="filtrarProductos(this.value, 'pinzas')">
+                <option value="todos">Todos</option>
+                <option value="disponibles">Disponibles</option>
+                <option value="agotados">Agotados</option>
+            </select>
+            <select class="sort-select" onchange="ordenarProductos(this.value, 'pinzas')">
+                <option value="mas-vendidos">Más vendidos</option>
+                <option value="precio-asc">Precio: Menor a Mayor</option>
+                <option value="precio-desc">Precio: Mayor a Menor</option>
+            </select>
+        </div>
+        <div class="catalog" id="pinzas-catalog">
+            <div class="product" data-precio="40" data-disponible="true">
+                <img src="images/32.webp" alt="PINZAS MAY">
+                <h3>PINZAS MAY</h3>
+                <p>$40.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/33.png" alt="PINZAS NAGARAKU N-09">
+                <h3>PINZAS NAGARAKU N-09</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/34.webp" alt="PINZAS NAGARAKU A-04">
+                <h3>PINZAS NAGARAKU A-04</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/35.jpg" alt="PINZAS NAGARAKU A-01">
+                <h3>PINZAS NAGARAKU A-01</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/36.webp" alt="PINZAS NAGARAKU N-04">
+                <h3>PINZAS NAGARAKU N-04</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/37.webp" alt="PINZAS NAGARAKU N-05">
+                <h3>PINZAS NAGARAKU N-05</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="50" data-disponible="true">
+                <img src="images/pinzas_kalanzi_pato_tornasol.jpg" alt="PINZAS KALANZI PATO TORNASOL">
+                <h3>PINZAS KALANZI PATO TORNASOL</h3>
+                <p>$50.00 MXN</p>
+            </div>
+            <div class="product" data-precio="45" data-disponible="true">
+                <img src="images/38.jpg" alt="PINZAS KALANZI ROSA/DORADO">
+                <h3>PINZAS KALANZI ROSA/DORADO</h3>
+                <p>$45.00 MXN</p>
+            </div>
+            <div class="product" data-precio="195" data-disponible="true">
+                <img src="images/39.jpg" alt="PINZAS DUO NAGARAKU RECTA/CURVA">
+                <h3>PINZAS DUO NAGARAKU RECTA/CURVA</h3>
+                <p>$195.00 MXN</p>
+            </div>
+            <div class="product" data-precio="65" data-disponible="true">
+                <img src="images/40.jpg" alt="PINZAS SIN LOGO NAGARAKU">
+                <h3>PINZAS SIN LOGO</h3>
+                <p>$65.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/41.webp" alt="PINZAS NAGARAKU N-03-2">
+                <h3>PINZAS NAGARAKU N-03-2</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="120" data-disponible="true">
+                <img src="images/42.webp" alt="PINZAS NAGARAKU NH-12">
+                <h3>PINZAS NAGARAKU NH-12</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/43.webp" alt="PINZAS NAGARAKU N-02-2">
+                <h3>PINZAS NAGARAKU N-02-2</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/44.jpg" alt="PINZAS NAGARAKU N-06">
+                <h3>PINZAS NAGARAKU N-06</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/45.webp" alt="PINZAS NAGARAKU N-07">
+                <h3>PINZAS NAGARAKU N-07</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/46.webp" alt="PINZAS NAGARAKU N-03">
+                <h3>PINZAS NAGARAKU N-03</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="45" data-disponible="true">
+                <img src="images/47.jpg" alt="PINZAS KALANZI BRILLOS">
+                <h3>PINZAS KALANZI BRILLOS</h3>
+                <p>$45.00 MXN</p>
+            </div>
+        </div>
+        <a href="https://wa.me/522721919293?text=Hola,%20quiero%20pedir%20unas%20Pinzas%20Zamma" class="whatsapp-btn" target="_blank">Pide por WhatsApp</a>
+    </section>
+
+    <!-- Sección Pizetas -->
+    <section id="pizetas" class="section">
+        <div class="section-title">Pizetas</div>
+        <div class="catalog-header">
+            <select class="filter-select" onchange="filtrarProductos(this.value, 'pizetas')">
+                <option value="todos">Todos</option>
+                <option value="disponibles">Disponibles</option>
+                <option value="agotados">Agotados</option>
+            </select>
+            <select class="sort-select" onchange="ordenarProductos(this.value, 'pizetas')">
+                <option value="mas-vendidos">Más vendidos</option>
+                <option value="precio-asc">Precio: Menor a Mayor</option>
+                <option value="precio-desc">Precio: Mayor a Menor</option>
+            </select>
+        </div>
+        <div class="catalog" id="pizetas-catalog">
+            <div class="product" data-precio="40" data-disponible="true">
+                <img src="images/48.jpg" alt="PIZETA 250 ML">
+                <h3>PIZETA 250 ML</h3>
+                <p>$20.00 MXN</p>
+            </div>
+        </div>
+        <a href="https://wa.me/522721919293?text=Hola,%20quiero%20pedir%20una%20Pizeta%20Zamma" class="whatsapp-btn" target="_blank">Pide por WhatsApp</a>
+    </section>
+
+    <!-- Sección Cintas -->
+    <section id="cintas" class="section">
+        <div class="section-title">Cintas</div>
+        <div class="catalog-header">
+            <select class="filter-select" onchange="filtrarProductos(this.value, 'cintas')">
+                <option value="todos">Todos</option>
+                <option value="disponibles">Disponibles</option>
+                <option value="agotados">Agotados</option>
+            </select>
+            <select class="sort-select" onchange="ordenarProductos(this.value, 'cintas')">
+                <option value="mas-vendidos">Más vendidos</option>
+                <option value="precio-asc">Precio: Menor a Mayor</option>
+                <option value="precio-desc">Precio: Mayor a Menor</option>
+            </select>
+        </div>
+        <div class="catalog" id="cintas-catalog">
+            <div class="product" data-precio="15" data-disponible="true">
+                <img src="images/cinta_blancas.jpg" alt="CINTA BLANCAS">
+                <h3>CINTA BLANCAS</h3>
+                <p>$15.00 MXN</p>
+            </div>
+            <div class="product" data-precio="15" data-disponible="true">
+                <img src="images/cinta_de_color.jpg" alt="CINTA DE COLOR">
+                <h3>CINTA DE COLOR</h3>
+                <p>$15.00 MXN</p>
+            </div>
+            <div class="product" data-precio="50" data-disponible="true">
+                <img src="images/cinta_taping.jpg" alt="CINTA TAPING">
+                <h3>CINTA TAPING</h3>
+                <p>$50.00 MXN</p>
+            </div>
+            <div class="product" data-precio="15" data-disponible="true">
+                <img src="images/cinta_transport.jpg" alt="CINTA TRANSPORT">
+                <h3>CINTA TRANSPORT</h3>
+                <p>$15.00 MXN</p>
+            </div>
+            <div class="product" data-precio="10" data-disponible="true">
+                <img src="images/media_cinta.jpg" alt="MEDIA CINTA">
+                <h3>MEDIA CINTA</h3>
+                <p>$10.00 MXN</p>
+            </div>
+        </div>
+        <a href="https://wa.me/522721919293?text=Hola,%20quiero%20pedir%20una%20Cinta%20Zamma" class="whatsapp-btn" target="_blank">Pide por WhatsApp</a>
+    </section>
+
+    <!-- Sección Cojín -->
+    <section id="cojin" class="section">
+        <div class="section-title">Cojín</div>
+        <div class="catalog-header">
+            <select class="filter-select" onchange="filtrarProductos(this.value, 'cojin')">
+                <option value="todos">Todos</option>
+                <option value="disponibles">Disponibles</option>
+                <option value="agotados">Agotados</option>
+            </select>
+            <select class="sort-select" onchange="ordenarProductos(this.value, 'cojin')">
+                <option value="mas-vendidos">Más vendidos</option>
+                <option value="precio-asc">Precio: Menor a Mayor</option>
+                <option value="precio-desc">Precio: Mayor a Menor</option>
+            </select>
+        </div>
+        <div class="catalog" id="cojin-catalog">
+            <!-- No hay productos en esta sección según el documento, pero la estructura está lista para añadirlos -->
+        </div>
+        <a href="https://wa.me/522721919293?text=Hola,%20quiero%20pedir%20un%20Cojín%20Zamma" class="whatsapp-btn" target="_blank">Pide por WhatsApp</a>
+    </section>
+
+    <!-- Sección Camas/Camillas -->
+    <section id="camillas" class="section">
+        <div class="section-title">Camas/Camillas</div>
+        <div class="catalog-header">
+            <select class="filter-select" onchange="filtrarProductos(this.value, 'camillas')">
+                <option value="todos">Todos</option>
+                <option value="disponibles">Disponibles</option>
+                <option value="agotados">Agotados</option>
+            </select>
+            <select class="sort-select" onchange="ordenarProductos(this.value, 'camillas')">
+                <option value="mas-vendidos">Más vendidos</option>
+                <option value="precio-asc">Precio: Menor a Mayor</option>
+                <option value="precio-desc">Precio: Mayor a Menor</option>
+            </select>
+        </div>
+        <div class="catalog" id="camillas-catalog">
+            <!-- No hay productos en esta sección según el documento, pero la estructura está lista para añadirlos -->
+        </div>
+        <a href="https://wa.me/522721919293?text=Hola,%20quiero%20pedir%20una%20Cama/Camilla%20Zamma" class="whatsapp-btn" target="_blank">Pide por WhatsApp</a>
+    </section>
+
+    <!-- Sección Pestañas -->
+    <section id="pestanas" class="section">
+        <div class="section-title">Pestañas</div>
+        <div class="catalog-header">
+            <select class="filter-select" onchange="filtrarProductos(this.value, 'pestanas')">
+                <option value="todos">Todos</option>
+                <option value="disponibles">Disponibles</option>
+                <option value="agotados">Agotados</option>
+            </select>
+            <select class="sort-select" onchange="ordenarProductos(this.value, 'pestanas')">
+                <option value="mas-vendidos">Más vendidos</option>
+                <option value="precio-asc">Precio: Menor a Mayor</option>
+                <option value="precio-desc">Precio: Mayor a Menor</option>
+            </select>
+        </div>
+        <div class="catalog" id="pestanas-catalog">
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/49.jpg" alt="NAGARAKU 0.7 D 7MM">
+                <h3>NAGARAKU 0.7 D 7MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/50.webp" alt="NAGARAKU 0.7 D 8MM">
+                <h3>NAGARAKU 0.7 D 8MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/51.webp" alt="NAGARAKU 0.7 D 9MM">
+                <h3>NAGARAKU 0.7 D 9MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/52.webp" alt="NAGARAKU 0.7 D 10MM">
+                <h3>NAGARAKU 0.7 D 10MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/53.jpg" alt="NAGARAKU 0.7 D 11MM">
+                <h3>NAGARAKU 0.7 D 11MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/54.jpg" alt="NAGARAKU 0.7 D 12MM">
+                <h3>NAGARAKU 0.7 D 12MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/55.jpg" alt="NAGARAKU 0.7 D 13MM">
+                <h3>NAGARAKU 0.7 D 13MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/56.jpg" alt="NAGARAKU 0.7 D 14MM">
+                <h3>NAGARAKU 0.7 D 14MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/57.webp" alt="NAGARAKU 0.7 D 15MM">
+                <h3>NAGARAKU 0.7 D 15MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/58.jpg" alt="NAGARAKU 0.5 D 9MM">
+                <h3>NAGARAKU 0.5 D 9MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/58.jpg" alt="NAGARAKU 0.5 D 10MM">
+                <h3>NAGARAKU 0.5 D 10MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/58.jpg" alt="NAGARAKU 0.5 D 11MM">
+                <h3>NAGARAKU 0.5 D 11MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/58.jpg" alt="NAGARAKU 0.5 D 12MM">
+                <h3>NAGARAKU 0.5 D 12MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/58.jpg" alt="NAGARAKU 0.5 D 13MM">
+                <h3>NAGARAKU 0.5 D 13MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/58.jpg" alt="NAGARAKU 0.5 D 14MM">
+                <h3>NAGARAKU 0.5 D 14MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/58.jpg" alt="NAGARAKU 0.5 D 15MM">
+                <h3>NAGARAKU 0.5 D 15MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="85" data-disponible="true">
+                <img src="images/59.webp" alt="MASSCAKU LASH 0.7 D 10MM">
+                <h3>MASSCAKU LASH 0.7 D 10MM</h3>
+                <p>$85.00 MXN</p>
+            </div>
+            <div class="product" data-precio="85" data-disponible="true">
+                <img src="images/59.webp" alt="MASSCAKU LASH 0.7 D 11MM">
+                <h3>MASSCAKU LASH 0.7 D 11MM</h3>
+                <p>$85.00 MXN</p>
+            </div>
+            <div class="product" data-precio="85" data-disponible="true">
+                <img src="images/59.webp" alt="MASSCAKU LASH 0.7 D 12MM">
+                <h3>MASSCAKU LASH 0.7 D 12MM</h3>
+                <p>$85.00 MXN</p>
+            </div>
+            <div class="product" data-precio="85" data-disponible="true">
+                <img src="images/59.webp" alt="MASSCAKU LASH 0.7 D 13MM">
+                <h3>MASSCAKU LASH 0.7 D 13MM</h3>
+                <p>$85.00 MXN</p>
+            </div>
+            <div class="product" data-precio="85" data-disponible="true">
+                <img src="images/59.webp" alt="MASSCAKU LASH 0.7 D 14MM">
+                <h3>MASSCAKU LASH 0.7 D 14MM</h3>
+                <p>$85.00 MXN</p>
+            </div>
+            <div class="product" data-precio="80" data-disponible="true">
+                <img src="images/59.webp" alt="MASSCAKU LASH 0.7 D 15MM">
+                <h3>MASSCAKU LASH 0.7 D 15MM</h3>
+                <p>$80.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/60.jpg" alt="NAGARAKU 0.7 D MIX">
+                <h3>NAGARAKU 0.7 D MIX</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="155" data-disponible="true">
+                <img src="images/61.webp" alt="MASSCAKU 4D MIX">
+                <h3>MASSCAKU 4D MIX</h3>
+                <p>$155.00 MXN</p>
+            </div>
+            <div class="product" data-precio="165" data-disponible="true">
+                <img src="images/62.jpg" alt="MASSCAKU 6D 0.7 D MIX">
+                <h3>MASSCAKU 6D 0.7 D MIX</h3>
+                <p>$165.00 MXN</p>
+            </div>
+            <div class="product" data-precio="165" data-disponible="true">
+                <img src="images/63.webp" alt="MASSCAKU 8D 0.7 D MIX">
+                <h3>MASSCAKU 8D 0.7 D MIX</h3>
+                <p>$165.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/64.jpg" alt="NAGARAKU 0.20 D MIX">
+                <h3>NAGARAKU 0.20 D MIX</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="110" data-disponible="true">
+                <img src="images/65.jpg" alt="NAGARAKU 0.7 D 13MM COLOR">
+                <h3>NAGARAKU 0.7 D 13MM COLOR</h3>
+                <p>$110.00 MXN</p>
+            </div>
+            <div class="product" data-precio="110" data-disponible="true">
+                <img src="images/65.jpg" alt="NAGARAKU 0.7 D 14MM COLOR">
+                <h3>NAGARAKU 0.7 D 14MM COLOR</h3>
+                <p>$110.00 MXN</p>
+            </div>
+            <div class="product" data-precio="110" data-disponible="true">
+                <img src="images/65.jpg" alt="NAGARAKU 0.7 D 15MM COLOR">
+                <h3>NAGARAKU 0.7 D 15MM COLOR</h3>
+                <p>$110.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/pestanas_nagaraku_07d_mix_color.jpg" alt="NAGARAKU 0.7 D MIX COLOR">
+                <h3>NAGARAKU 0.7 D MIX COLOR</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="150" data-disponible="true">
+                <img src="images/pestanas_nagaraku_07d_mix_color_2.jpg" alt="NAGARAKU 0.7 D MIX COLOR">
+                <h3>NAGARAKU 0.7 D MIX COLOR</h3>
+                <p>$150.00 MXN</p>
+            </div>
+            <div class="product" data-precio="110" data-disponible="true">
+                <img src="images/66.webp" alt="NAGARAKU AUTO F 7-11">
+                <h3>NAGARAKU AUTO F 7-11</h3>
+                <p>$110.00 MXN</p>
+            </div>
+            <div class="product" data-precio="110" data-disponible="true">
+                <img src="images/67.webp" alt="NAGARAKU AUTO F 8-12">
+                <h3>NAGARAKU AUTO F 8-12</h3>
+                <p>$110.00 MXN</p>
+            </div>
+            <div class="product" data-precio="110" data-disponible="true">
+                <img src="images/67.webp" alt="NAGARAKU AUTO F 10-14">
+                <h3>NAGARAKU AUTO F 10-14</h3>
+                <p>$110.00 MXN</p>
+            </div>
+            <div class="product" data-precio="110" data-disponible="true">
+                <img src="images/67.webp" alt="NAGARAKU AUTO F 11-15">
+                <h3>NAGARAKU AUTO F 11-15</h3>
+                <p>$110.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/68.jpg" alt="NAGARAKU 0.15 D MIX">
+                <h3>NAGARAKU 0.15 D MIX</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/69.jpg" alt="MASSCAKU YY 0.7 D 15MM">
+                <h3>MASSCAKU YY 0.7 D 15MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/70.jpg" alt="NAGARAKU 3Y 0.7D 10MM">
+                <h3>NAGARAKU 3Y 0.7D 10MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/70.jpg" alt="NAGARAKU 3Y 0.7D 11MM">
+                <h3>NAGARAKU 3Y 0.7D 11MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/70.jpg" alt="NAGARAKU 3Y 0.7D 12MM">
+                <h3>NAGARAKU 3Y 0.7D 12MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/70.jpg" alt="NAGARAKU 3Y 0.7D 13MM">
+                <h3>NAGARAKU 3Y 0.7D 13MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/70.jpg" alt="NAGARAKU 3Y 0.7D 14MM">
+                <h3>NAGARAKU 3Y 0.7D 14MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/71.jpg" alt="NAGARAKU 2Y 0.7D 10MM">
+                <h3>NAGARAKU 2Y 0.7D 10MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/71.jpg" alt="NAGARAKU 2Y 0.7D 11MM">
+                <h3>NAGARAKU 2Y 0.7D 11MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/71.jpg" alt="NAGARAKU 2Y 0.7D 12MM">
+                <h3>NAGARAKU 2Y 0.7D 12MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/71.jpg" alt="NAGARAKU 2Y 0.7D 13MM">
+                <h3>NAGARAKU 2Y 0.7D 13MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/71.jpg" alt="NAGARAKU 2Y 0.7D 14MM">
+                <h3>NAGARAKU 2Y 0.7D 14MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/72.jpg" alt="BLISTER YY MAY 0.7D MIX">
+                <h3>BLISTER YY MAY 0.7D MIX</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="30" data-disponible="true">
+                <img src="images/73.jpg" alt="PESTAÑAS PRACTICA">
+                <h3>PESTAÑAS PRACTICA</h3>
+                <p>$30.00 MXN</p>
+            </div>
+            <div class="product" data-precio="85" data-disponible="true">
+                <img src="images/74.jpg" alt="BLISTER KALANZI YY 0.7 D MIX">
+                <h3>BLISTER KALANZI YY 0.7 D MIX</h3>
+                <p>$85.00 MXN</p>
+            </div>
+            <div class="product" data-precio="85" data-disponible="true">
+                <img src="images/75.jpg" alt="BLISTER KALANZI 0.15 D MIX">
+                <h3>BLISTER KALANZI 0.15 D MIX</h3>
+                <p>$85.00 MXN</p>
+            </div>
+            <div class="product" data-precio="85" data-disponible="true">
+                <img src="images/74.jpg" alt="BLISTER KALANZI 0.7 D MIX">
+                <h3>BLISTER KALANZI 0.7 D MIX</h3>
+                <p>$85.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/76.webp" alt="NAGARAKU MIX 0.10">
+                <h3>NAGARAKU MIX 0.10</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="155" data-disponible="true">
+                <img src="images/70.jpg" alt="NAGARAKU 3D 0.7 D 8MM">
+                <h3>NAGARAKU 3D 0.7 D 8MM</h3>
+                <p>$155.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/71.jpg" alt="NAGARAKU 2Y 0.7 D MIX">
+                <h3>NAGARAKU 2Y 0.7 D MIX</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/77.webp" alt="NAGARAKU 0.5 D MIX">
+                <h3>NAGARAKU 0.5 D MIX</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="155" data-disponible="true">
+                <img src="images/70.jpg" alt="NAGARAKU 3D MIX">
+                <h3>NAGARAKU 3D MIX</h3>
+                <p>$155.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/78.webp" alt="NAGARAKU 0.20 MIX FLAT">
+                <h3>NAGARAKU 0.20 MIX FLAT</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/58.jpg" alt="NAGARAKU 0.7 D 16MM">
+                <h3>NAGARAKU 0.7 D 16MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/71.jpg" alt="NAGARAKU 2Y 0.7D 15MM">
+                <h3>NAGARAKU 2Y 0.7D 15MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/79.jpg" alt="NAGARAKU 0.7 D 17MM">
+                <h3>NAGARAKU 0.7 D 17MM</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/70.jpg" alt="NAGARAKU 3Y 0.7 D MIX">
+                <h3>NAGARAKU 3Y 0.7 D MIX</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="155" data-disponible="true">
+                <img src="images/81.jpg" alt="NAGARAKU 5D MIX">
+                <h3>NAGARAKU 5D MIX</h3>
+                <p>$155.00 MXN</p>
+            </div>
+            <div class="product" data-precio="155" data-disponible="true">
+                <img src="images/70.jpg" alt="NAGARAKU 3D 13MM">
+                <h3>NAGARAKU 3D 13MM</h3>
+                <p>$155.00 MXN</p>
+            </div>
+            <div class="product" data-precio="155" data-disponible="true">
+                <img src="images/70.jpg" alt="NAGARAKU 3D 14MM">
+                <h3>NAGARAKU 3D 14MM</h3>
+                <p>$155.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/71.jpg" alt="NAGARAKU 2Y 0.7D 16MM">
+                <h3>NAGARAKU 2Y 0.7D 16MM</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="165" data-disponible="true">
+                <img src="images/80.webp" alt="MASSCAKU 5D MIX">
+                <h3>MASSCAKU 5D MIX</h3>
+                <p>$165.00 MXN</p>
+            </div>
+            <div class="product" data-precio="165" data-disponible="true">
+                <img src="images/82.jpg" alt="5D KALANZI MIX">
+                <h3>5D KALANZI MIX</h3>
+                <p>$165.00 MXN</p>
+            </div>
+            <div class="product" data-precio="155" data-disponible="true">
+                <img src="images/83.webp" alt="3D KALANZI MIX">
+                <h3>3D KALANZI MIX</h3>
+                <p>$155.00 MXN</p>
+            </div>
+            <div class="product" data-precio="90" data-disponible="true">
+                <img src="images/84.webp" alt="NAGARAKU 0.7 C MIX">
+                <h3>NAGARAKU 0.7 C MIX</h3>
+                <p>$90.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/85.jpg" alt="NAGARAKU 0.5 D MIX 16-20">
+                <h3>NAGARAKU 0.5 D MIX 16-20</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/85.jpg" alt="NAGARAKU 0.7 C MIX 16-20">
+                <h3>NAGARAKU 0.7 C MIX 16-20</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/85.jpg" alt="NAGARAKU 0.7 D MIX 16-20">
+                <h3>NAGARAKU 0.7 D MIX 16-20</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="300" data-disponible="true">
+                <img src="images/86.webp" alt="NAGARAKU MEGA MIX  0.5 MIX">
+                <h3>NAGARAKU 54 F 0.5 MIX</h3>
+                <p>$300.00 MXN</p>
+            </div>
+            <div class="product" data-precio="300" data-disponible="true">
+                <img src="images/86.webp" alt="NAGARAKU MEGA MIX 0.7 MIX">
+                <h3>NAGARAKU 54 F 0.7 MIX</h3>
+                <p>$300.00 MXN</p>
+            </div>
+            <div class="product" data-precio="300" data-disponible="true">
+                <img src="images/86.webp" alt="NAGARAKU MEGA MIX 0.10 MIX">
+                <h3>NAGARAKU 54 F 0.10 MIX</h3>
+                <p>$300.00 MXN</p>
+            </div>
+            <div class="product" data-precio="300" data-disponible="true">
+                <img src="images/86.webp" alt="NAGARAKU MEGA MIX 0.15 MIX">
+                <h3>NAGARAKU 54 F 0.15 MIX</h3>
+                <p>$300.00 MXN</p>
+            </div>
+            <div class="product" data-precio="110" data-disponible="true">
+                <img src="images/87.jpg" alt="TDANCE 0.7 MIX">
+                <h3>TDANCE 0.7 MIX</h3>
+                <p>$110.00 MXN</p>
+            </div>
+            <div class="product" data-precio="110" data-disponible="true">
+                <img src="images/87.jpg" alt="TDANCE 0.5 MIX">
+                <h3>TDANCE 0.5 MIX</h3>
+                <p>$110.00 MXN</p>
+            </div>
+            <div class="product" data-precio="170" data-disponible="true">
+                <img src="images/89.jpg" alt="TDANCE 6D 0.7D MIX CAJA ABANICOS">
+                <h3>TDANCE 6D 0.7D MIX CAJA ABANICOS</h3>
+                <p>$170.00 MXN</p>
+            </div>
+            <div class="product" data-precio="170" data-disponible="true">
+                <img src="images/89.jpg" alt="TDANCE 8D 0.7D MIX CAJA ABANICOS">
+                <h3>TDANCE 8D 0.7D MIX CAJA ABANICOS</h3>
+                <p>$170.00 MXN</p>
+            </div>
+            <div class="product" data-precio="170" data-disponible="true">
+                <img src="images/89.jpg" alt="TDANCE 5D 0.7D MIX CAJA ABANICOS">
+                <h3>TDANCE 5D 0.7D MIX CAJA ABANICOS</h3>
+                <p>$170.00 MXN</p>
+            </div>
+            <div class="product" data-precio="170" data-disponible="true">
+                <img src="images/89.jpg" alt="TDANCE 8D 0.5D MIX CAJA ABANICOS">
+                <h3>TDANCE 8D 0.5D MIX CAJA ABANICOS</h3>
+                <p>$170.00 MXN</p>
+            </div>
+            <div class="product" data-precio="170" data-disponible="true">
+                <img src="images/89.jpg" alt="TDANCE 12D 0.5D MIX CAJA ABANICOS">
+                <h3>TDANCE 12D 0.5D MIX CAJA ABANICOS</h3>
+                <p>$170.00 MXN</p>
+            </div>
+            <div class="product" data-precio="170" data-disponible="true">
+                <img src="images/89.jpg" alt="TDANCE 600 AB 14D 0.7 MIX">
+                <h3>TDANCE 600 AB 14D 0.7 MIX</h3>
+                <p>$170.00 MXN</p>
+            </div>
+            <div class="product" data-precio="170" data-disponible="true">
+                <img src="images/90.webp" alt="MASSCAKU 10D C MIX">
+                <h3>MASSCAKU 10D C MIX</h3>
+                <p>$165.00 MXN</p>
+            </div>
+            <div class="product" data-precio="170" data-disponible="true">
+                <img src="images/90.webp" alt="MASSCAKU 10D MIX">
+                <h3>MASSCAKU 10D MIX</h3>
+                <p>$165.00 MXN</p>
+            </div>
+            <div class="product" data-precio="165" data-disponible="true">
+                <img src="images/91.webp" alt="NAGARAKU 5D C MIX">
+                <h3>NAGARAKU 5D C MIX</h3>
+                <p>$165.00 MXN</p>
+            </div>
+            <div class="product" data-precio="100" data-disponible="true">
+                <img src="images/71.jpg" alt="NAGARAKU 2Y 12 C">
+                <h3>NAGARAKU 2Y 12 C</h3>
+                <p>$100.00 MXN</p>
+            </div>
+            <div class="product" data-precio="165" data-disponible="true">
+                <img src="images/91.webp" alt="MASSCAKU 5D 11MM">
+                <h3>MASSCAKU 5D 11MM</h3>
+                <p>$165.00 MXN</p>
+            </div>
+            <div class="product" data-precio="165" data-disponible="true">
+                <img src="images/91.webp" alt="MASSCAKU 5D 12MM">
+                <h3>MASSCAKU 5D 12MM</h3>
+                <p>$165.00 MXN</p>
+            </div>
+            <div class="product" data-precio="165" data-disponible="true">
+                <img src="images/91.webp" alt="MASSCAKU 5D 13MM">
+                <h3>MASSCAKU 5D 13MM</h3>
+                <p>$165.00 MXN</p>
+            </div>
+            <div class="product" data-precio="165" data-disponible="true">
+                <img src="images/91.webp" alt="MASSCAKU 5D 14MM">
+                <h3>MASSCAKU 5D 14MM</h3>
+                <p>$165.00 MXN</p>
+            </div>
+            <div class="product" data-precio="155" data-disponible="true">
+                <img src="images/92.jpg" alt="XIUSUZAKI 5D 0.7 MIX">
+                <h3>XIUSUZAKI 5D 0.7 MIX</h3>
+                <p>$165.00 MXN</p>
+            </div>
+        </div>
+        <a href="https://wa.me/522721919293?text=Hola,%20quiero%20pedir%20Pestañas%20Zamma" class="whatsapp-btn" target="_blank">Pide por WhatsApp</a>
+    </section>
+
+    <!-- Ubicación -->
+    <section id="ubicacion" class="section">
+        <div class="section-title">Ubicación</div>
+        <div class="location-container">
+            <p>Visítanos en: <strong>Poniente 8 y norte 11, Orizaba Veracruz, Mexico</strong></p>
+            <p>Horario: Lunes a Viernes, 8:00 - 18:00</p>
+            <a href="https://www.google.com/maps/place/Zamma+Salon/@18.8505959,-97.1145259,17z" target="_blank">Abrir en Google Maps</a>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3775.8216606136!2d-97.11452592605524!3d18.850595859012525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c5032811806a75%3A0xc72ac5cb2484dc6!2sZamma%20Salon!5e0!3m2!1ses!2smx!4v1740172910256!5m2!1ses!2smx" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Zamma. Todos los derechos reservados.</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/share/1BsNwM5qYE/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/522721919293" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/522721919293?text=Hola,%20quiero%20pedir%20un%20producto%20Zamma" class="whatsapp-btn" target="_blank">Pide por WhatsApp</a>
+
+    <script src="script.js"></script>
+</body>
+</html>
