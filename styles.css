@@ -56,7 +56,7 @@ h1, h2, h3 {
     width: 0;
     height: 100%;
     background: var(--gold);
-    animation: load 2s ease forwards;
+    animation: load 1.5s ease-in-out infinite alternate; /* Animación más fluida */
 }
 
 @keyframes load {
@@ -155,6 +155,12 @@ header {
     opacity: 0;
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.nav-dropdown-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .nav-dropdown:hover .nav-dropdown-content, .nav-dropdown:focus-within .nav-dropdown-content {
@@ -271,7 +277,7 @@ header {
     display: none;
     opacity: 0;
     transition: opacity 0.5s ease, transform 0.5s ease;
-    transform: translateY(20px);
+    transform: translateY(10px); /* Reducido para un efecto más natural */
 }
 
 .section.visible {
@@ -601,14 +607,34 @@ footer {
     }
 
     .nav-dropdown-content {
-        position: static;
+        position: absolute;
         width: 100%;
         box-shadow: none;
         background: rgba(10, 10, 10, 0.95);
-        padding: 10px 0;
+        padding: 0;
+        top: 100%; /* Ajuste para que aparezca debajo del botón */
+        left: 0;
+        display: none; /* Asegurar que esté oculto por defecto */
+    }
+
+    .nav-dropdown-content.active {
+        display: block; /* Mostrar cuando el script agrega la clase active */
+        opacity: 1;
+        transform: translateY(0);
+        z-index: 1001; /* Asegurar que esté sobre otros elementos */
     }
 
     .nav-dropdown-content a {
         padding: 0.8rem 2rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-dropdown .dropbtn {
+        padding: 0.5rem 1rem; /* Ajuste para móviles */
+    }
+
+    .nav-dropdown .dropbtn:hover {
+        color: var(--gold);
     }
 }
