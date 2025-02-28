@@ -1,214 +1,127 @@
-// Loader
-window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    if (loader) {
-        setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 500);
-        }, 1500);
-    }
-});
-
-// Mostrar/Ocultar secciones
-function mostrarSeccion(seccionId) {
-    document.querySelectorAll('.section').forEach(section => {
-        section.classList.remove('visible');
-        section.setAttribute('aria-hidden', 'true');
-    });
-
-    const seccion = document.getElementById(seccionId);
-    if (seccion) {
-        seccion.classList.add('visible');
-        seccion.setAttribute('aria-hidden', 'false');
-        seccion.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    document.querySelectorAll('.nav-item, .dropbtn').forEach(item => {
-        item.classList.remove('active');
-        item.setAttribute('aria-selected', 'false');
-    });
-    const menuItem = document.querySelector(`[href="#${seccionId}"]`);
-    if (menuItem) {
-        menuItem.classList.add('active');
-        menuItem.setAttribute('aria-selected', 'true');
-    }
-
-    // En móviles, cerrar solo el menú principal (nav-menu), no el dropdown
-    if (window.innerWidth <= 768) {
-        const navMenu = document.querySelector('.nav-menu');
-        const menuToggle = document.querySelector('.menu-toggle');
-        if (navMenu && navMenu.classList.contains('active')) {
-            setTimeout(() => {
-                navMenu.classList.remove('active');
-                if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
-            }, 300);
-        }
-    }
-}
-
-// Mostrar Adhesivos por defecto al cargar
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        mostrarSeccion('adhesivos');
-    }, 2000);
-});
-
-// Menú móvil y desplegable
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
-const dropButton = document.querySelector('.dropbtn');
-const dropdownContent = document.querySelector('.nav-dropdown-content');
-
-if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', (e) => {
-        const isExpanded = navMenu.classList.toggle('active');
-        menuToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-    });
-
-    menuToggle.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        const isExpanded = navMenu.classList.toggle('active');
-        menuToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-    }, { passive: false });
-}
-
-if (dropButton && dropdownContent) {
-    // Abrir/cerrar el desplegable con touchend para toque simple
-    dropButton.addEventListener('touchend', (e) => {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            const isExpanded = !dropdownContent.classList.contains('active');
-            dropdownContent.classList.toggle('active', isExpanded);
-            dropButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-        }
-    }, { passive: false });
-
-    // Respaldo con click para compatibilidad
-    dropButton.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768) {
-            const isExpanded = !dropdownContent.classList.contains('active');
-            dropdownContent.classList.toggle('active', isExpanded);
-            dropButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-        }
-    });
-
-    // Manejar enlaces dentro del dropdown
-    dropdownContent.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const seccionId = link.getAttribute('href').substring(1);
-            mostrarSeccion(seccionId);
-        });
-
-        link.addEventListener('touchend', (e) => {
-            e.stopPropagation();
-            const seccionId = link.getAttribute('href').substring(1);
-            mostrarSeccion(seccionId);
-        }, { passive: false });
-    });
-
-    // Cerrar dropdown al tocar fuera
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768 && !dropButton.contains(e.target) && !dropdownContent.contains(e.target)) {
-            dropdownContent.classList.remove('active');
-            dropButton.setAttribute('aria-expanded', 'false');
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', 'false');
-            }
-        }
-    });
-
-    document.addEventListener('touchend', (e) => {
-        if (window.innerWidth <= 768 && !dropButton.contains(e.target) && !dropdownContent.contains(e.target)) {
-            dropdownContent.classList.remove('active');
-            dropButton.setAttribute('aria-expanded', 'false');
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', 'false');
-            }
-        }
-    });
-}
-
-// Filtros y ordenamiento
-function filtrarProductos(filtro, seccionId) {
-    const catalog = document.getElementById(`${seccionId}-catalog`);
-    if (!catalog) return;
-
-    const productos = catalog.querySelectorAll('.product');
-    productos.forEach(product => {
-        const disponible = product.getAttribute('data-disponible') === 'true';
-        switch (filtro) {
-            case 'todos':
-                product.style.display = 'block';
-                break;
-            case 'disponibles':
-                product.style.display = disponible ? 'block' : 'none';
-                break;
-            case 'agotados':
-                product.style.display = !disponible ? 'block' : 'none';
-                break;
-            default:
-                product.style.display = 'block';
-        }
-    });
-}
-
-function ordenarProductos(orden, seccionId) {
-    const catalog = document.getElementById(`${seccionId}-catalog`);
-    if (!catalog) return;
-
-    const productos = Array.from(catalog.querySelectorAll('.product'));
-    if (!productos.length) return;
-
-    switch (orden) {
-        case 'mas-vendidos':
-            productos.sort((a, b) => {
-                const vendidoA = parseInt(a.getAttribute('data-vendido') || 0);
-                const vendidoB = parseInt(b.getAttribute('data-vendido') || 0);
-                return vendidoB - vendidoA || 0.5 - Math.random();
-            });
-            break;
-        case 'precio-asc':
-            productos.sort((a, b) => {
-                const precioA = parseFloat(a.getAttribute('data-precio') || 0);
-                const precioB = parseFloat(b.getAttribute('data-precio') || 0);
-                return precioA - precioB;
-            });
-            break;
-        case 'precio-desc':
-            productos.sort((a, b) => {
-                const precioA = parseFloat(a.getAttribute('data-precio') || 0);
-                const precioB = parseFloat(b.getAttribute('data-precio') || 0);
-                return precioB - precioA;
-            });
-            break;
-        default:
-            return;
-    }
-
-    productos.forEach(product => catalog.appendChild(product));
-}
-
-// Manejo de errores y compatibilidad
+// Esperar a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
-    const selectFilters = document.querySelectorAll('.filter-select');
-    const selectSorts = document.querySelectorAll('.sort-select');
+    // Variables globales
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const loader = document.getElementById('loader');
 
-    selectFilters.forEach(select => {
-        select.addEventListener('change', (e) => {
-            const seccionId = select.closest('.section').id;
-            filtrarProductos(e.target.value, seccionId);
+    // Ocultar el loader después de 2 segundos (puedes ajustar el tiempo)
+    setTimeout(() => {
+        loader.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Habilitar scroll
+    }, 2000);
+
+    // Toggle del menú móvil
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+
+    // Cerrar menú móvil al hacer clic en un enlace
+    document.querySelectorAll('.nav-dropdown-content a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
         });
     });
 
-    selectSorts.forEach(select => {
+    // Mostrar sección específica al hacer clic
+    function mostrarSeccion(seccionId) {
+        const secciones = document.querySelectorAll('.section');
+        secciones.forEach(seccion => {
+            seccion.style.display = 'none';
+        });
+        document.getElementById(seccionId).style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll suave al inicio
+    }
+
+    // Mostrar la primera sección (Adhesivos) por defecto
+    mostrarSeccion('adhesivos');
+
+    // Filtrar productos
+    function filtrarProductos(filtro, seccion) {
+        const productos = document.querySelectorAll(`#${seccion}-catalog .product`);
+        productos.forEach(producto => {
+            switch (filtro) {
+                case 'todos':
+                    producto.style.display = 'block';
+                    break;
+                case 'disponibles':
+                    const disponible = producto.getAttribute('data-disponible') === 'true';
+                    producto.style.display = disponible ? 'block' : 'none';
+                    break;
+                case 'agotados':
+                    const agotado = producto.getAttribute('data-disponible') === 'false';
+                    producto.style.display = agotado ? 'block' : 'none';
+                    break;
+            }
+        });
+    }
+
+    // Ordenar productos
+    function ordenarProductos(criterio, seccion) {
+        const catalogo = document.getElementById(`${seccion}-catalog`);
+        const productos = Array.from(catalogo.getElementsByClassName('product'));
+
+        productos.sort((a, b) => {
+            const precioA = parseFloat(a.getAttribute('data-precio'));
+            const precioB = parseFloat(b.getAttribute('data-precio'));
+
+            switch (criterio) {
+                case 'precio-asc':
+                    return precioA - precioB;
+                case 'precio-desc':
+                    return precioB - precioA;
+                case 'mas-vendidos':
+                    // Simulación de "más vendidos" (puedes ajustar con datos reales)
+                    const ventasA = parseInt(a.getAttribute('data-ventas') || 0);
+                    const ventasB = parseInt(b.getAttribute('data-ventas') || 0);
+                    return ventasB - ventasA;
+                default:
+                    return 0;
+            }
+        });
+
+        // Reordenar los productos en el DOM
+        productos.forEach(producto => catalogo.appendChild(producto));
+    }
+
+    // Asignar eventos a los selectores de filtro y ordenamiento
+    document.querySelectorAll('.filter-select').forEach(select => {
         select.addEventListener('change', (e) => {
-            const seccionId = select.closest('.section').id;
-            ordenarProductos(e.target.value, seccionId);
+            const seccion = e.target.closest('.section').id;
+            filtrarProductos(e.target.value, seccion);
+        });
+    });
+
+    document.querySelectorAll('.sort-select').forEach(select => {
+        select.addEventListener('change', (e) => {
+            const seccion = e.target.closest('.section').id;
+            ordenarProductos(e.target.value, seccion);
+        });
+    });
+
+    // Smooth scroll al hacer clic en enlaces de navegación
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+                // Cerrar menú móvil si está abierto
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+    });
+
+    // Añadir funcionalidad de WhatsApp con mensaje dinámico
+    document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const sectionTitle = btn.closest('.section').querySelector('.section-title').textContent;
+            const defaultMessage = encodeURIComponent(`Hola, quiero pedir ${sectionTitle} Zamma`);
+            const whatsappUrl = btn.getAttribute('href') || `https://wa.me/522721919293?text=${defaultMessage}`;
+            btn.setAttribute('href', whatsappUrl);
         });
     });
 });
