@@ -66,26 +66,48 @@ if (menuToggle && navMenu) {
         const isExpanded = navMenu.classList.toggle('active');
         menuToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
     });
+
+    // Soporte táctil para el botón hamburguesa
+    menuToggle.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const isExpanded = navMenu.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    }, { passive: false });
 }
 
 if (dropButton && dropdownContent) {
-    // Usar click como evento principal para compatibilidad con iOS
+    // Abrir/cerrar el desplegable con click
     dropButton.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
-            e.preventDefault(); // Prevenir navegación por defecto en móviles
             const isExpanded = !dropdownContent.classList.contains('active');
             dropdownContent.classList.toggle('active', isExpanded);
             dropButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
         }
     });
 
+    // Soporte táctil para abrir el desplegable
+    dropButton.addEventListener('touchstart', (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            const isExpanded = !dropdownContent.classList.contains('active');
+            dropdownContent.classList.toggle('active', isExpanded);
+            dropButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        }
+    }, { passive: false });
+
     // Asegurar que los enlaces dentro del dropdown funcionen
     dropdownContent.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evitar que el click en el enlace cierre el dropdown
+            e.stopPropagation(); // Evitar que el click cierre el dropdown
             const seccionId = link.getAttribute('href').substring(1);
             mostrarSeccion(seccionId);
         });
+
+        link.addEventListener('touchstart', (e) => {
+            e.stopPropagation();
+            const seccionId = link.getAttribute('href').substring(1);
+            mostrarSeccion(seccionId);
+        }, { passive: false });
     });
 
     // Cerrar dropdown al tocar fuera
@@ -100,7 +122,6 @@ if (dropButton && dropdownContent) {
         }
     });
 
-    // Soporte adicional para touch en iOS/Android
     document.addEventListener('touchend', (e) => {
         if (window.innerWidth <= 768 && !dropButton.contains(e.target) && !dropdownContent.contains(e.target)) {
             dropdownContent.classList.remove('active');
@@ -155,7 +176,7 @@ function ordenarProductos(orden, seccionId) {
         case 'precio-asc':
             productos.sort((a, b) => {
                 const precioA = parseFloat(a.getAttribute('data-precio') || 0);
-                const precioB = parseFloat(a.getAttribute('data-precio') || 0);
+                const precioB = parseFloat(b.getAttribute('data-precio') || 0);
                 return precioA - precioB;
             });
             break;
