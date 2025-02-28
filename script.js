@@ -40,24 +40,17 @@ function mostrarSeccion(seccionId) {
         dropBtn.setAttribute('aria-selected', 'true');
     }
 
-    // Cerrar menú y dropdown en móviles
+    // En móviles, cerrar solo el menú principal (nav-menu), no el dropdown
     if (window.innerWidth <= 768) {
         const navMenu = document.querySelector('.nav-menu');
-        const dropdownContent = document.querySelector('.nav-dropdown-content');
         const menuToggle = document.querySelector('.menu-toggle');
-        const dropButton = document.querySelector('.dropbtn');
         if (navMenu && navMenu.classList.contains('active')) {
             setTimeout(() => {
                 navMenu.classList.remove('active');
                 if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
-            }, 300); // Reducido para mejor respuesta
-        }
-        if (dropdownContent && dropdownContent.classList.contains('active')) {
-            setTimeout(() => {
-                dropdownContent.classList.remove('active');
-                if (dropButton) dropButton.setAttribute('aria-expanded', 'false');
             }, 300);
         }
+        // No cerramos el dropdown (.nav-dropdown-content) aquí
     }
 }
 
@@ -96,17 +89,14 @@ if (dropButton && dropdownContent) {
                 touchActive = true;
                 setTimeout(() => { touchActive = false; }, 1000);
             }
-            if (isExpanded && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', 'false');
-            }
+            // No cerramos navMenu aquí para mantener consistencia
         }
     }, { passive: false });
 
     // Manejo de clic (evitar duplicidad con touchstart)
     dropButton.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
-            if (e.defaultPrevented) return; // Ignorar si touchstart ya lo manejó
+            if (e.defaultPrevented) return;
             e.preventDefault();
             const isExpanded = !dropdownContent.classList.contains('active');
             dropdownContent.classList.toggle('active', isExpanded);
@@ -115,13 +105,9 @@ if (dropButton && dropdownContent) {
                 touchActive = true;
                 setTimeout(() => { touchActive = false; }, 1000);
             }
-            if (isExpanded && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', 'false');
-            }
         } else {
-            const seccionId = dropButton.getAttribute('href').substring(1);
-            mostrarSeccion(seccionId);
+            const seccionId = dropButton.getAttribute('href')?.substring(1);
+            if (seccionId) mostrarSeccion(seccionId);
         }
     });
 
@@ -132,7 +118,7 @@ if (dropButton && dropdownContent) {
         }
     }, { passive: false });
 
-    // Cerrar al tocar fuera
+    // Cerrar dropdown y nav-menu al tocar fuera
     document.addEventListener('touchend', (e) => {
         if (window.innerWidth <= 768 && !dropButton.contains(e.target) && !dropdownContent.contains(e.target)) {
             dropdownContent.classList.remove('active');
@@ -144,7 +130,6 @@ if (dropButton && dropdownContent) {
         }
     });
 
-    // Cerrar con clic fuera (para compatibilidad)
     document.addEventListener('click', (e) => {
         if (window.innerWidth <= 768 && !touchActive && !dropButton.contains(e.target) && !dropdownContent.contains(e.target)) {
             dropdownContent.classList.remove('active');
