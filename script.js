@@ -67,8 +67,7 @@ if (menuToggle && navMenu) {
         menuToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
     });
 
-    // Soporte táctil para el botón hamburguesa
-    menuToggle.addEventListener('touchstart', (e) => {
+    menuToggle.addEventListener('touchend', (e) => {
         e.preventDefault();
         const isExpanded = navMenu.classList.toggle('active');
         menuToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
@@ -76,17 +75,8 @@ if (menuToggle && navMenu) {
 }
 
 if (dropButton && dropdownContent) {
-    // Abrir/cerrar el desplegable con click
-    dropButton.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768) {
-            const isExpanded = !dropdownContent.classList.contains('active');
-            dropdownContent.classList.toggle('active', isExpanded);
-            dropButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-        }
-    });
-
-    // Soporte táctil para abrir el desplegable
-    dropButton.addEventListener('touchstart', (e) => {
+    // Abrir/cerrar el desplegable con touchend para toque simple
+    dropButton.addEventListener('touchend', (e) => {
         if (window.innerWidth <= 768) {
             e.preventDefault();
             const isExpanded = !dropdownContent.classList.contains('active');
@@ -95,15 +85,24 @@ if (dropButton && dropdownContent) {
         }
     }, { passive: false });
 
-    // Asegurar que los enlaces dentro del dropdown funcionen
+    // Respaldo con click para compatibilidad
+    dropButton.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            const isExpanded = !dropdownContent.classList.contains('active');
+            dropdownContent.classList.toggle('active', isExpanded);
+            dropButton.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        }
+    });
+
+    // Manejar enlaces dentro del dropdown
     dropdownContent.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evitar que el click cierre el dropdown
+            e.stopPropagation();
             const seccionId = link.getAttribute('href').substring(1);
             mostrarSeccion(seccionId);
         });
 
-        link.addEventListener('touchstart', (e) => {
+        link.addEventListener('touchend', (e) => {
             e.stopPropagation();
             const seccionId = link.getAttribute('href').substring(1);
             mostrarSeccion(seccionId);
