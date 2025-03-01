@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ocultar el loader después de 2 segundos (puedes ajustar el tiempo)
     setTimeout(() => {
-        loader.style.display = 'none';
+        loader.classList.add('hidden'); // Usar clase CSS para transición
         document.body.style.overflow = 'auto'; // Habilitar scroll
     }, 2000);
 
@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
             menuToggle.classList.remove('active');
+            // Mostrar la sección correspondiente al enlace
+            const seccionId = link.getAttribute('onclick')?.replace('mostrarSeccion(', '').replace(')', '').trim();
+            if (seccionId) mostrarSeccion(seccionId);
         });
     });
 
@@ -29,9 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function mostrarSeccion(seccionId) {
         const secciones = document.querySelectorAll('.section');
         secciones.forEach(seccion => {
-            seccion.style.display = 'none';
+            if (seccion.id === seccionId) {
+                seccion.classList.add('visible');
+                // Asegurar que el catálogo dentro de la sección sea visible
+                const catalogo = seccion.querySelector('.catalog');
+                if (catalogo) catalogo.style.display = 'grid';
+            } else {
+                seccion.classList.remove('visible');
+                const catalogo = seccion.querySelector('.catalog');
+                if (catalogo) catalogo.style.display = 'none';
+            }
         });
-        document.getElementById(seccionId).style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll suave al inicio
     }
 
@@ -42,18 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function filtrarProductos(filtro, seccion) {
         const productos = document.querySelectorAll(`#${seccion}-catalog .product`);
         productos.forEach(producto => {
+            const disponible = producto.getAttribute('data-disponible') === 'true';
             switch (filtro) {
                 case 'todos':
                     producto.style.display = 'block';
                     break;
                 case 'disponibles':
-                    const disponible = producto.getAttribute('data-disponible') === 'true';
                     producto.style.display = disponible ? 'block' : 'none';
                     break;
                 case 'agotados':
-                    const agotado = producto.getAttribute('data-disponible') === 'false';
-                    producto.style.display = agotado ? 'block' : 'none';
+                    producto.style.display = !disponible ? 'block' : 'none'; // Corrección lógica
                     break;
+                default:
+                    producto.style.display = 'block';
             }
         });
     }
@@ -64,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const productos = Array.from(catalogo.getElementsByClassName('product'));
 
         productos.sort((a, b) => {
-            const precioA = parseFloat(a.getAttribute('data-precio'));
-            const precioB = parseFloat(b.getAttribute('data-precio'));
+            const precioA = parseFloat(a.getAttribute('data-precio')) || 0;
+            const precioB = parseFloat(b.getAttribute('data-precio')) || 0;
 
             switch (criterio) {
                 case 'precio-asc':
@@ -73,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 case 'precio-desc':
                     return precioB - precioA;
                 case 'mas-vendidos':
-                    // Simulación de "más vendidos" (puedes ajustar con datos reales)
+                    // Simulación de "más vendidos" (ajusta con datos reales si los tienes)
                     const ventasA = parseInt(a.getAttribute('data-ventas') || 0);
                     const ventasB = parseInt(b.getAttribute('data-ventas') || 0);
                     return ventasB - ventasA;
@@ -111,6 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Cerrar menú móvil si está abierto
                 navMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
+                // Mostrar la sección si tiene ID
+                const seccionId = target.id;
+                if (seccionId) mostrarSeccion(seccionId);
             }
         });
     });
@@ -118,10 +133,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Añadir funcionalidad de WhatsApp con mensaje dinámico
     document.querySelectorAll('.whatsapp-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const sectionTitle = btn.closest('.section').querySelector('.section-title').textContent;
+            const sectionTitle = btn.closest('.section')?.querySelector('.section-title')?.textContent || 'un producto';
             const defaultMessage = encodeURIComponent(`Hola, quiero pedir ${sectionTitle} Zamma`);
             const whatsappUrl = btn.getAttribute('href') || `https://wa.me/522721919293?text=${defaultMessage}`;
             btn.setAttribute('href', whatsappUrl);
         });
+    });
+
+    // Verificación básica de carga de imágenes
+    document.querySelectorAll('.product img').forEach(img => {
+        img.onerror = () => {
+            console.error(`Error al cargar la imagen: ${img.src}`);
+            img.src = 'https://via.placeholder.com/200x150?text=Imagen+No+Disponible'; // Placeholder
+        };
     });
 });
